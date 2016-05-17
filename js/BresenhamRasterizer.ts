@@ -116,7 +116,7 @@ namespace Bresenham {
                 x = x + 1;
                 epsilon = epsilon + Math.abs(this.line.dy);
                 
-                if (2*epsilon > this.line.dx) {
+                if ((epsilon << 1) > this.line.dx) {
                     epsilon = epsilon - this.line.dx;
                     y = y + this.step;
                 }
