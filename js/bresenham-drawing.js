@@ -278,10 +278,11 @@ var Bresenham;
             var epsilon = 0;
             var x = this.line.x0;
             var y = this.line.y0;
+            var dy = Math.abs(this.line.dy);
             do {
                 this.fillCell(x, y);
                 x = x + 1;
-                epsilon = epsilon + Math.abs(this.line.dy);
+                epsilon = epsilon + dy;
                 if ((epsilon << 1) > this.line.dx) {
                     epsilon = epsilon - this.line.dx;
                     y = y + this.step;
