@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        
+        <style>
+            #canvasContainer > canvas {
+                background-color: #d3d3d3;
+                position: absolute;
+            }
+        </style>
+        
+        <script src="js/jquery-2.2.1.js"></script>
+        <script src="js/bresenham-drawing.js"></script>
+        
+        <title>Bresenham drawing demo</title>
+    </head>
+    <body>
+        <div id="canvasContainer">
+            <canvas 
+                id="canvasDrawing"
+                width=1280
+                height=960>
+            </canvas>
+            <canvas 
+                id="canvasPreview"
+                width=1280
+                height=960>
+            </canvas>
+        </div>
+    </body>
+    <script>
+        $(window).on("load", function() {
+            var application;
+            var columns = 640;
+            var rows = 480;
+            // var columns = 100;
+            // var rows = 100;
+            
+            application = new Bresenham.Application(
+                undefined, 
+                {columns: columns, rows: rows}, 
+                document);
+                
+            //application.strokeGrid();
+            
+            // A horizontal line 
+            //application.rasterizeLine(0, Math.round(rows/2), columns-1, Math.round(rows/2));
+            
+            // A vertical line
+            //application.rasterizeLine(Math.round(columns/2), 0, Math.round(columns/2), rows-1);
+            
+            // A diagonal line
+            //application.rasterizeLine(0, rows-1, columns-1, 0);
+            
+            // A diagonal line
+            //application.rasterizeLine(
+            //    Math.round(columns/2), Math.round(rows/2), 
+            //    Math.round(columns/2)-1, rows-1);
+            
+            // An invalid line
+            // application.rasterizeLine(0, rows, columns-1, 0);
+        })
+    </script>
+</html>
