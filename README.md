@@ -1,5 +1,6 @@
 # typescript-bresenham
 Bresenham's line rasterization algorithm as described here -- https://www.cs.helsinki.fi/group/goa/mallinnus/lines/bresenh.html
+
 A TypeScript implementation.
 
 The algorithm itself is contained in BresenhamRasterizer.ts
