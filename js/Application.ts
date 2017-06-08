@@ -6,6 +6,8 @@
 /// <reference path="BresenhamRasterizer.ts" />
 
 namespace Bresenham {
+    declare let $: any;
+    
     export class Application {
         private previewController: PreviewController;
         private drawingController: DrawingController;

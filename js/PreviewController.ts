@@ -4,6 +4,8 @@
 /// <reference path="BresenhamRasterizer.ts" />
 
 namespace Bresenham {
+    declare let $: any;
+
     class Cell {
         column: number;
         row: number;
