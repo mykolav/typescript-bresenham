@@ -27,7 +27,7 @@ namespace Bresenham {
             return this.grid[row][column];
         }
         
-        setCellValue(column: number, row: number, value: boolean): void {
+        setCellValue(column: number, row: number, value: boolean) {
             if (!this.isCellWithinBounds({ x: column, y: row })) {
                 throw {
                     message: `The cell {x: ${column}, y: ${row}} is out of the grid's bounds`,

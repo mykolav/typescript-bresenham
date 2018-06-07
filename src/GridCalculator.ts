@@ -40,7 +40,7 @@ namespace Bresenham {
         }
 
         getCellRectangle(column: number, row: number): Rectangle {
-            let rectangle = {
+            const rectangle = {
                 x: this.origin.x + (column * this.cellWidth),
                 y: this.origin.y + (row * this.cellHeight),
                 width: this.cellWidth,

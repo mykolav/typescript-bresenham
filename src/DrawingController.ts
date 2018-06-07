@@ -7,12 +7,10 @@ namespace Bresenham {
     export class DrawingController {
         
         constructor(
-            private calculator : GridCalculator,
-            private model: GridModel,
             private painter : GridPainter) {
         }
         
-        strokeGrid(): void {
+        strokeGrid() {
             this.painter.strokeGrid();
         }
         
@@ -20,7 +18,7 @@ namespace Bresenham {
             column0: number, 
             row0: number, 
             column1: number, 
-            row1: number): void {
+            row1: number) {
             
             this.painter.rasterizeLine(column0, row0, column1, row1);
             this.painter.fillCellsFromModel();

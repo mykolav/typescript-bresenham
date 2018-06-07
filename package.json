@@ -1,0 +1,24 @@
+{
+  "name": "typescript-bresenham",
+  "version": "0.0.1",
+  "description": "Bresenham's line rasterization algorithm implemented in TypeScript.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mykolav/typescript-bresenham.git"
+  },
+  "keywords": [
+    "bresenham",
+    "typescript",
+    "just-for-fun"
+  ],
+  "author": "Mykola Musiienko",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/mykolav/typescript-bresenham/issues"
+  },
+  "homepage": "https://github.com/mykolav/typescript-bresenham#readme",
+  "devDependencies": {
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.1"
+  }
+}

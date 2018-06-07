@@ -1,8 +1,7 @@
 namespace Bresenham {
     
     class Line {
-        private _isSlopeNormalized: boolean;
-        private _isSlopePositive: boolean;
+        private _isSlopeNormalized = false;
         
         private _dx: number;
         private _dy: number;
@@ -15,7 +14,7 @@ namespace Bresenham {
 
             // It's important to call normalizeSlope() before normalize()
             // as normalizeSlope can swap the coordinates of line's endpoints
-            // and this swapping can result in a "denormalization" of the line.                
+            // and this swapping can result in a "denormalization" of the line.
             this.normalizeSlope();
             this.normalize();
 
@@ -23,7 +22,7 @@ namespace Bresenham {
             this._dx = this.x1 - this.x0;
         }
         
-        private normalize(): void {
+        private normalize() {
             if (this.x0 > this.x1) {
                 let temp = this.x0;
                 this.x0 = this.x1;
@@ -35,7 +34,7 @@ namespace Bresenham {
             }
         }
         
-        private normalizeSlope(): void {
+        private normalizeSlope() {
             
             this._isSlopeNormalized = false;
             
@@ -43,10 +42,10 @@ namespace Bresenham {
             // The slope calculation formulae is the following:
             // slope = dy / dx
             // In case dy is greater than dx, the slope is greater than 1 (steep)
-            let dx = Math.abs(this.x1 - this.x0);
-            let dy = Math.abs(this.y1 - this.y0);
+            const dx = Math.abs(this.x1 - this.x0);
+            const dy = Math.abs(this.y1 - this.y0);
             
-            let isSteep = dy > dx;
+            const isSteep = dy > dx;
             if (isSteep) {
                 let temp = this.x0;
                 this.x0 = this.y0;
@@ -88,29 +87,28 @@ namespace Bresenham {
             this.line = new Line(x0, y0, x1, y1);
             if (this.line.dy > 0) {
                 this.step = 1;
-            } 
-            else {
+            } else {
                 this.step = -1;
             }
         }
         
-        public rasterizeLine(): void {
+        public rasterizeLine() {
                
-            // NOTE: A horizontal line is rasterized just fine:
-            // NOTE: dy is zero and consequently y is never changed,
-            // NOTE: so the resulting rasterization is horizontal.
+            // A horizontal line is rasterized just fine:
+            // dy is zero and consequently y is never changed,
+            // so the resulting rasterization is horizontal.
             
-            // NOTE: A vertical line is rasterized successfully thanks to the following:
-            // NOTE: 1. A vertical line is considered to have a steep slope and
-            // NOTE:    and as a result it's normalized to a "horizontal" line.
-            // NOTE: 2. A horizontal line rasterization is described above...
+            // A vertical line is rasterized successfully thanks to the following:
+            // 1. A vertical line is considered to have a steep slope and
+            //    and as a result it's normalized to a "horizontal" line.
+            // 2. A horizontal line rasterization is described above...
             
             let epsilon = 0;
             
             let x = this.line.x0;
             let y = this.line.y0;
             
-            let dy = Math.abs(this.line.dy);
+            const dy = Math.abs(this.line.dy);
            
             do {
                 this.fillCell(x, y);
@@ -125,9 +123,9 @@ namespace Bresenham {
             } while (x <= this.line.x1);
         }
         
-        private fillCell(column: number, row: number): void {
+        private fillCell(column: number, row: number) {
             if (this.line.isSlopeNormalized) {
-                let temp = column;
+                const temp = column;
                 column = row;
                 row = temp;
             }

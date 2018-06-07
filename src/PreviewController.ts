@@ -4,26 +4,29 @@
 /// <reference path="BresenhamRasterizer.ts" />
 
 namespace Bresenham {
-    declare let $: any;
+    declare const $: any;
 
     class Cell {
-        column: number;
-        row: number;
-        value: boolean;
+        constructor(
+            public column: number,
+            public row: number,
+            public value: boolean) 
+        {
+        }
     }
     
     export class PreviewController {
-        private previewRefreshInterval = 100;
+        //private previewRefreshInterval = 100;
         
-        private _isMousePressed: boolean;
+        private _isMousePressed = false;
         //private _intervalId: any;
         
-        private savedCells: Cell[];
+        private savedCells: Cell[] = [];
         
-        public column0: number;
-        public row0: number;
-        public column1: number;
-        public row1: number; 
+        public column0 = 0;
+        public row0 = 0;
+        public column1 = 0;
+        public row1 = 0; 
     
         constructor(
             private calculator : GridCalculator,
@@ -38,10 +41,10 @@ namespace Bresenham {
             $(this.preview).mouseup((me: MouseEvent) => this.processMouseUp(this, me));
         }
         
-        private processMouseDown(self: PreviewController, me: MouseEvent): void {
+        private processMouseDown(self: PreviewController, me: MouseEvent) {
             self._isMousePressed = false;
 
-            let cell = self.getCellFromMouseEvent(me);            
+            const cell = self.getCellFromMouseEvent(me);            
             
             if (!self.model.isCellWithinBounds(cell)) {
                 return;
@@ -58,24 +61,24 @@ namespace Bresenham {
             //     this.previewRefreshInterval);
         }
         
-        private updatePreview(self: PreviewController): void {
+        private updatePreview(self: PreviewController) {
             self.clearPreview();
             self.drawPreview();
         }
         
-        private processMouseMove(self: PreviewController, me: MouseEvent): void {
+        private processMouseMove(self: PreviewController, me: MouseEvent) {
             if (!self._isMousePressed) {
                 return;
             }
             
-            let cell = self.getCellFromMouseEvent(me);
+            const cell = self.getCellFromMouseEvent(me);
             self.column1 = cell.x;
             self.row1 = cell.y;
 
             self.updatePreview(self);
         }
         
-        private processMouseLeave(self: PreviewController, me: MouseEvent): void {
+        private processMouseLeave(self: PreviewController, _: MouseEvent) {
             if (!self._isMousePressed) {
                 return;
             }
@@ -90,7 +93,7 @@ namespace Bresenham {
             self.row1 = 0;
         }
         
-        private processMouseUp(self: PreviewController, me: MouseEvent): void {
+        private processMouseUp(self: PreviewController, me: MouseEvent) {
             if (!self._isMousePressed) {
                 return;
             }
@@ -99,7 +102,7 @@ namespace Bresenham {
             self._isMousePressed = false;
             self.clearPreview();
             
-            let cell = self.getCellFromMouseEvent(me);
+            const cell = self.getCellFromMouseEvent(me);
             self.column1 = cell.x;
             self.row1 = cell.y;
 
@@ -107,22 +110,22 @@ namespace Bresenham {
         }
         
         private getCellFromMouseEvent(me: MouseEvent): Point {
-            let canvasX = me.pageX - this.preview.offsetLeft;
-            let canvasY = me.pageY - this.preview.offsetTop;
+            const canvasX = me.pageX - this.preview.offsetLeft;
+            const canvasY = me.pageY - this.preview.offsetTop;
             
-            let column = this.calculator.getColumnFromX(canvasX);
-            let row = this.calculator.getRowFromY(canvasY);
+            const column = this.calculator.getColumnFromX(canvasX);
+            const row = this.calculator.getRowFromY(canvasY);
             
             return {x: column, y: row};
         }
         
-        private clearPreview(): void {
+        private clearPreview() {
             if (!this.savedCells || this.savedCells.length === 0) {
                 return;
             }
             
             for (let i = 0; i < this.savedCells.length; ++i) {
-                let cell = this.savedCells[i];
+                const cell = this.savedCells[i];
                 this.model.setCellValue(cell.column, cell.row, cell.value);
                 if (cell.value) {
                     this.painter.fillCell(cell.column, cell.row);
@@ -135,18 +138,18 @@ namespace Bresenham {
             this.savedCells = [];
         }
         
-        private drawPreview(): void {
+        private drawPreview() {
             this.savedCells = [];
             
             this.painter.rasterizeLine(
                 this.column0, this.row0, this.column1, this.row1,
                 (x: number, y: number) => {
                     
-                    let cell = new Cell();
-                    cell.column = x;
-                    cell.row = y;
-                    cell.value = this.model.getCellValue(x, y);
-                    
+                    const cell = new Cell(
+                        /*column*/ x, 
+                        /*row*/ y, 
+                        /*value*/ this.model.getCellValue(x, y));
+
                     this.savedCells.push(cell); 
                 });
         }
