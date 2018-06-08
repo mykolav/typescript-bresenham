@@ -10,16 +10,14 @@ namespace Bresenham {
         constructor(
             public column: number,
             public row: number,
-            public value: boolean) 
-        {
-        }
+            public value: boolean) {}
     }
     
     export class PreviewController {
-        //private previewRefreshInterval = 100;
+        // private previewRefreshInterval = 100;
         
         private _isMousePressed = false;
-        //private _intervalId: any;
+        // private _intervalId: any;
         
         private savedCells: Cell[] = [];
         
@@ -29,9 +27,9 @@ namespace Bresenham {
         public row1 = 0; 
     
         constructor(
-            private calculator : GridCalculator,
+            private calculator: GridCalculator,
             private model: GridModel,
-            private painter : GridPainter,
+            private painter: GridPainter,
             private preview: HTMLCanvasElement,
             private drawLineCallback: (controller: PreviewController) => any) {
                 
@@ -83,7 +81,7 @@ namespace Bresenham {
                 return;
             }
             
-            //clearInterval(self._intervalId);
+            // clearInterval(self._intervalId);
             self._isMousePressed = false;
             self.clearPreview();
             
@@ -98,7 +96,7 @@ namespace Bresenham {
                 return;
             }
             
-            //clearInterval(self._intervalId);
+            // clearInterval(self._intervalId);
             self._isMousePressed = false;
             self.clearPreview();
             
@@ -129,8 +127,7 @@ namespace Bresenham {
                 this.model.setCellValue(cell.column, cell.row, cell.value);
                 if (cell.value) {
                     this.painter.fillCell(cell.column, cell.row);
-                }
-                else {
+                } else {
                     this.painter.clearCell(cell.column, cell.row);
                 }
             }

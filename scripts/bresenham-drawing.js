@@ -71,7 +71,10 @@ var Bresenham;
             this.gridModel = gridModel;
             var context = canvas.getContext('2d');
             if (!context) {
-                throw new Error("Getting 2d context failed!");
+                throw {
+                    message: "Getting 2d context failed!",
+                    code: '2d-context-null'
+                };
             }
             this.context = context;
         }
@@ -342,9 +345,9 @@ var Bresenham;
             this.painter = painter;
             this.preview = preview;
             this.drawLineCallback = drawLineCallback;
-            //private previewRefreshInterval = 100;
+            // private previewRefreshInterval = 100;
             this._isMousePressed = false;
-            //private _intervalId: any;
+            // private _intervalId: any;
             this.savedCells = [];
             this.column0 = 0;
             this.row0 = 0;
@@ -387,7 +390,7 @@ var Bresenham;
             if (!self._isMousePressed) {
                 return;
             }
-            //clearInterval(self._intervalId);
+            // clearInterval(self._intervalId);
             self._isMousePressed = false;
             self.clearPreview();
             self.column0 = 0;
@@ -399,7 +402,7 @@ var Bresenham;
             if (!self._isMousePressed) {
                 return;
             }
-            //clearInterval(self._intervalId);
+            // clearInterval(self._intervalId);
             self._isMousePressed = false;
             self.clearPreview();
             var cell = self.getCellFromMouseEvent(me);

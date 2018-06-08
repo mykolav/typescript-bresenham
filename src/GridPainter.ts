@@ -3,7 +3,7 @@
 namespace Bresenham {
     
     export class GridPainter {
-        private context : CanvasRenderingContext2D;
+        private context: CanvasRenderingContext2D;
         
         constructor(
             canvas: HTMLCanvasElement,
@@ -12,7 +12,10 @@ namespace Bresenham {
         ) { 
             const context = canvas.getContext('2d');
             if (!context) {
-                throw new Error("Getting 2d context failed!");
+                throw {
+                    message: `Getting 2d context failed!`,
+                    code: '2d-context-null'
+                };
             }
 
             this.context = context;
@@ -39,8 +42,7 @@ namespace Bresenham {
                 for (let column = 0; column < this.gridModel.dimensions.columns; ++column) {
                     if (this.gridModel.getCellValue(column, row)) {
                         this.fillCell(column, row);
-                    }
-                    else {
+                    } else {
                         this.clearCell(column, row);
                     }
                 }

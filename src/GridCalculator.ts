@@ -23,19 +23,19 @@ namespace Bresenham {
             this.cellHeight = size.height / dimensions.rows;
         }
         
-        get left() : number {
+        get left() {
             return this.origin.x;
         }
         
-        get right() : number {
+        get right() {
             return this.origin.x + this.size.width;
         }
         
-        get top() : number {
+        get top() {
             return this.origin.y;
         }
         
-        get bottom() : number {
+        get bottom() {
             return this.origin.y + this.size.height;
         }
 
@@ -50,19 +50,19 @@ namespace Bresenham {
             return rectangle;
         }
         
-        getHorizontalLineY(row: number) : number {
+        getHorizontalLineY(row: number) {
             return this.origin.y + (row * this.cellHeight);
         }
         
-        getVerticalLineX(column: number): number {
+        getVerticalLineX(column: number) {
             return this.origin.x + (column * this.cellWidth);
         }
         
-        getColumnFromX(x: number): number {
+        getColumnFromX(x: number) {
             return Math.ceil(x / this.cellWidth);
         }
         
-        getRowFromY(y: number): number {
+        getRowFromY(y: number) {
             return Math.ceil(y / this.cellHeight);
         }
     }

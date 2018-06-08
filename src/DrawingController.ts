@@ -7,7 +7,7 @@ namespace Bresenham {
     export class DrawingController {
         
         constructor(
-            private painter : GridPainter) {
+            private painter: GridPainter) {
         }
         
         strokeGrid() {

@@ -1,7 +1,7 @@
 namespace Bresenham {
     
     export class GridModel {
-        private grid : boolean[][]
+        private grid: boolean[][];
         
         constructor(public dimensions: { columns: number; rows: number }) {
             this.grid = [];
