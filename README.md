@@ -4,8 +4,8 @@
 
 This implementation of Bresenham's line rasterization has been inspired by [the algorithm's description here](https://www.cs.helsinki.fi/group/goa/mallinnus/lines/bresenh.html).  
 
-We handle the cases which the description lefts as an exercise for the reader.  
-More specifically:
+We handle the cases which the description leaves as an exercise for the reader.  
+Specifically:
   - any endpoint order.
   - small and large positive slopes.
   - small and large negative slopes.
@@ -20,23 +20,23 @@ The algorithm's description seems to suggest using slightly different versions o
 > but the code for small negative slopes may > be adapted to this case by stepping over y instead of x).
 
 The code in this repo instead employs an approach where 
-  1) the line is "normalized" 
+  1) the line is "normalized".
   2) and then handled in a generic way by the same code regardless of it having large/small positive/negative slope.
 
-I'm in no way an expert on the topic. So my implementation may be trading off performance &mdash; in a not obvious to me way &mdash; for having generic rasterization code.
+I'm in no way an expert on the topic. So my implementation may be trading off performance &mdash; in not an obvious to me way &mdash; for having generic rasterization code.
 
 # Just for fun.
 
 The algorithm's point is rasterizing a line relying only on integer addition, subtraction, and bit shifting.  
 These operations are usually very cheap compared to multiplication, division, trigonometric functions or using floating point numbers. Consequently, the algorithm makes sense when:
   - There is a need to squeeze every last bit of performance out of a computer.
-  - The hardware is simply limited. E.g., floating point number aren't supported in the first place.
+  - The hardware is simply limited. E.g., floating point numbers aren't supported in the first place.
 
 Implementing Bresenham's algorithm in `TypeScript` and executing it in a web browser is a just-for-fun excercise then.
 
 # Try it!
 
-Just follow this [link](https://mykolav.github.io/typescript-bresenham/index.html).
+Simply follow this [link](https://mykolav.github.io/typescript-bresenham/index.html).
 
 And if you prefer doing things the hard way?  
 Clone the project to your machine.
