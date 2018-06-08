@@ -25,6 +25,15 @@ The code in this repo instead employs an approach where
 
 I'm in no way an expert on the topic. So my implementation may be trading off performance &mdash; in a not obvious to me way &mdash; for having generic rasterization code.
 
+# Just for fun.
+
+The algorithm's point is rasterizing a line relying only on integer addition, subtraction, and bit shifting.  
+These operations are usually very cheap compared to multiplication, division, trigonometric functions or using floating point numbers. Consequently, the algorithm makes sense when:
+  - There is a need to squeeze every last bit of performance out of a computer.
+  - The hardware is simply limited. E.g., floating point number aren't supported in the first place.
+
+Implementing Bresenham's algorithm in `TypeScript` and executing it in a web browser is a just-for-fun excercise then.
+
 # Try it!
 
 Just follow this [link](https://mykolav.github.io/typescript-bresenham/index.html).
@@ -52,6 +61,7 @@ npm i
 
 # The project's structure.
 
+### `src`
 `TypeScript` code reside in the `src` folder.
 
 The algorithm itself is contained in [`BresenhamRasterizer.ts`](https://github.com/mykolav/typescript-bresenham/blob/master/src/BresenhamRasterizer.ts)
@@ -59,11 +69,13 @@ The algorithm itself is contained in [`BresenhamRasterizer.ts`](https://github.c
 All the other code implements a primitive line drawing application.
 It uses `BresenhamRasterizer` to rasterize the lines on `HTML5`'s canvas.
 
+### `scripts`
 `tsc` is configured to emit compiled `JavaScript` in the `scripts` folder.  
 It compiles all the `src/*.ts` files into a single `scripts/bresenham-drawing.js`.
 
 The `scripts` folder is also the home for a copy of `jquery-2.2.1.js`.
 
+### `index.html`
 [`index.html`](https://github.com/mykolav/typescript-bresenham/blob/master/index.html) is the application's entry point.
 
 
