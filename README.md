@@ -27,12 +27,15 @@ I'm in no way an expert on the topic. So my implementation may be trading off pe
 
 # Try it!
 
+Just follow this [link](https://mykolav.github.io/typescript-bresenham/index.html).
+
+And if you prefer doing things the hard way?  
 Clone the project to your machine.
 ```sh
 git clone https://github.com/mykolav/typescript-bresenham.git
 ```
 
-Open [`typescript-bresenham/index.html`](https://github.com/mykolav/typescript-bresenham/blob/master/index.html) in a modern web browser.
+Open [`typescript-bresenham/index.html`](https://github.com/mykolav/typescript-bresenham/blob/master/index.html) in a modern web browser &mdash; i.e. double-click on `typescript-bresenham/index.html`.  
 A page with `HTML5` canvas &mdash; the light-gray area &mdash; should load.
 You can draw lines by clicking and moving inside of the the canvas.
 
@@ -68,7 +71,7 @@ The `scripts` folder is also the home for a copy of `jquery-2.2.1.js`.
 
 [Colin Flanagan](flanaganc@ul.ie) for [the description of Bresenham Line-Drawing Algorithm](https://www.cs.helsinki.fi/group/goa/mallinnus/lines/bresenh.html).
 
-[jQuery](https://jquery.com/) for jQuery.
+[jQuery](https://jquery.com/) authors for [jQuery]().
 
 # License
 
