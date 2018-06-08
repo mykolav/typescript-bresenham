@@ -225,6 +225,12 @@ var Bresenham;
             var dy = Math.abs(this.y1 - this.y0);
             var isSteep = dy > dx;
             if (isSteep) {
+                // So, the slope is steep.
+                // We swap x0 <=> y0, x1 <=> y0.
+                // As a result, we "mirror" the line over the straight line
+                // going through the centre of coordinates at 45 degree angle. 
+                // And so the slope of this "mirrored" line is not steep anymore.
+                // (The line is symmetrical to the original wrt the 45 degree straight line.)
                 var temp = this.x0;
                 this.x0 = this.y0;
                 this.y0 = temp;
@@ -265,11 +271,17 @@ var Bresenham;
         function BresenhamRasterizer(fillCellCallback, x0, y0, x1, y1) {
             this.fillCellCallback = fillCellCallback;
             this.line = new Line(x0, y0, x1, y1);
+            // We use absolute value of line.dy (stepOfEpsilon) only as the increment of epsilon.
+            // This lets us figure out when it's time to change y.
+            // y is changed by stepOfY which can be either +1 or -1 
+            // depending on the original sign of line.dy.
             if (this.line.dy > 0) {
-                this.step = 1;
+                this.stepOfY = 1;
+                this.stepOfEpsilon = this.line.dy;
             }
             else {
-                this.step = -1;
+                this.stepOfY = -1;
+                this.stepOfEpsilon = -this.line.dy;
             }
         }
         BresenhamRasterizer.prototype.rasterizeLine = function () {
@@ -283,19 +295,21 @@ var Bresenham;
             var epsilon = 0;
             var x = this.line.x0;
             var y = this.line.y0;
-            var dy = Math.abs(this.line.dy);
             do {
                 this.fillCell(x, y);
                 x = x + 1;
-                epsilon = epsilon + dy;
+                epsilon = epsilon + this.stepOfEpsilon;
                 if ((epsilon << 1) > this.line.dx) {
                     epsilon = epsilon - this.line.dx;
-                    y = y + this.step;
+                    y = y + this.stepOfY;
                 }
             } while (x <= this.line.x1);
         };
         BresenhamRasterizer.prototype.fillCell = function (column, row) {
             if (this.line.isSlopeNormalized) {
+                // Lines with normilized slopes 
+                // have their x and y coordinates swaped.
+                // Make sure we swap them back before rasterizing a point.
                 var temp = column;
                 column = row;
                 row = temp;
